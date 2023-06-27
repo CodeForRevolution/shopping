@@ -16,6 +16,7 @@ import ProductInfo from "./components/productInfo/productInfo"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { json } from 'body-parser';
+import { cartAction } from './components/redux/Reducer/cartReducer';
 
 
 
@@ -44,12 +45,12 @@ const App = () => {
       const newP = products.products
       setProducts(newP)
 
-      // const cartItem=[];
-      // if(localStorage.getItem('cartItem')){
-      // cartItem=JSON.parse(localStorage.getItem('cartItem'));
-
-       
-      // }
+      var cartItem=[];
+      if(localStorage.getItem('cartItem')){
+       cartItem=await JSON.parse(localStorage.getItem('cartItem'));
+      console.log('you come to fetch the data from the local storage',cartItem);
+      dispatch(cartAction.setCart(cartItem)); 
+      }
 
 
       const ReduxProduct = [...newP];
