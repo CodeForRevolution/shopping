@@ -66,7 +66,7 @@ const ProductItem = (props) => {
 
 
   const MoreInfo = (id) => {
-    navigate(`/moreInfo?id=${id}`);
+    navigate(`/shopping/moreInfo?id=${id}`);
 
   }
 

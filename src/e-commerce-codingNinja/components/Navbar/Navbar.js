@@ -30,15 +30,15 @@ const Navbar = () => {
 
                 <div className="nav_logo">
                     {/* <img src="https://cdn-icons-png.flaticon.com/128/2496/2496101.png" alt=""/> */}
-                    <span><Link to={'/'}><i class="fa-solid fa-house"></i></Link></span>
-                    <span><Link to={'create'}>Add Product</Link></span>
+                    <span><Link to={'/shopping'}><i class="fa-solid fa-house"></i></Link></span>
+                    <span><Link to={'/shopping/create'}>Add Product</Link></span>
                    
 
                 </div>
                 <span>E-shop.com</span>
                 <div className="nav_side">
                     <span  className='user' ><i class="fa-solid fa-user"></i><span>login</span></span>
-                    <span className='Nav_cart'><Link to={'cart'}><i class="fa-solid fa-cart-shopping"></i> <span className='cart_number'>{cartlength}</span></Link></span>
+                    <span className='Nav_cart'><Link to={'/shopping/cart'}><i class="fa-solid fa-cart-shopping"></i> <span className='cart_number'>{cartlength}</span></Link></span>
                 </div>
             </nav>
             <div className='navMain'>

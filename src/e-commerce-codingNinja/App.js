@@ -71,7 +71,7 @@ const App = () => {
   const browerrouter = createBrowserRouter(
     [
       {
-        path: '/', element: <Navbar />, children: [
+        path: 'shopping', element: <Navbar />, children: [
           { index: true, element: <ProductContainer /> },
           { path: 'cart', element: <Cart /> },
           { path: 'login', element: <Login /> },
