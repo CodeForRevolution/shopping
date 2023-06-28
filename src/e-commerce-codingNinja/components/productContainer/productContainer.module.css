@@ -21,8 +21,6 @@
   }
 
 
-
-
   /* working on side menu toggle thing  */
   .sidemenu{
     display: flex;
@@ -85,8 +83,6 @@ z-index: 99;
   height: 90%;
 }
   /* working on the side bar   */
-
-
   
 @media only screen and (max-width:700px){
 
@@ -107,8 +103,11 @@ width: 35%;
   background-color: #d9d9d9;
 
 
- }
 
+ }
+.toggle{
+  font-size:28px;
+}
      
   
   }

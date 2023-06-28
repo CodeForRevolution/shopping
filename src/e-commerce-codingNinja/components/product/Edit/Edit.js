@@ -23,14 +23,11 @@ useEffect(()=>{
     setId(editProduct.id ||'');
 },[editProduct])
 
-   console.log('you got the data fromm edit reducer',editProduct)
-
-
     const handleSubmmit=(event)=>{
         event.preventDefault();
         event.stopPropagation();
-        dispatch(productAction.edit({id,title,price,description}))
-        dispatch(EditAction.eidtToogle(false));
+        dispatch(productAction.edit({id,title,price,description}))   //sending the object to product reducer and id to modified the object 
+        dispatch(EditAction.eidtToogle(false));                      //making toggle to false to hid the edit form
         
     }
 
@@ -46,7 +43,7 @@ useEffect(()=>{
        <input type="text" value={price} onChange={(e)=>{setPrice(e.target.value)}} />
        <span>Description</span>
        <textarea type="text" value={description} onChange={(e)=>{setDescription(e.target.value)}}/>  
-        <button onClick={(e)=>{handleSubmmit(e)}}>Add product</button>
+        <button onClick={(e)=>{handleSubmmit(e)}}>Edit Product</button>
       </form>
     </div>
   )

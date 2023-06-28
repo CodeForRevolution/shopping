@@ -4,32 +4,27 @@ import { productContext } from '../../contextApi/contex'
 import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartAction, cartSelector } from '../redux/Reducer/cartReducer'
-import { isDOMComponent } from 'react-dom/test-utils'
+
 
 
 function Item(props) {
-
   const ReduxcartProduct=useSelector(cartSelector)
   const dispatch=useDispatch();
-
   const increaseQty = (id) => {
     const newcart = ReduxcartProduct.map((element) => {
       if (element.id === id && element.count < 15) {
-        console.log('you are looking you object is',element)
         const newboject={...element};
         newboject.count+=1;
         element=newboject;
       }
       return element;
-    })
-    
+    })   
     dispatch(cartAction.increase(newcart));
   }
 
   const decreaseQty = () => {
     const newcart = ReduxcartProduct.map((element) => {
       if (element.id === id && element.count>1) {
-        console.log('you are looking you object is',element)
         const newboject={...element};
         newboject.count-=1;
         element=newboject;
@@ -60,7 +55,6 @@ function Item(props) {
           {console.log('your with is',window.innerWidth)}
           <span>{window.innerWidth<500?description.slice(0,40):description}</span>
           <div className={styles.Qtycontrol}><button onClick={() => { decreaseQty(id) }} >-</button><span>Qty:{count}</span><button onClick={() => { increaseQty(id) }}>+</button>  <button onClick={() => { remove(id) }}>Remove</button></div>
-
         </div>
       </div>
     </>
@@ -71,9 +65,8 @@ function Item(props) {
 
 
 const Cart = () => {
-  const cartProduct = useContext(productContext).cartProduct
+  // const cartProduct = useContext(productContext).cartProduct
   const [total, setTotal] = useState(0);
-
   const ReduxCartProduct=useSelector(cartSelector);
   useEffect(() => {
     var grand = 0
@@ -98,13 +91,11 @@ const Cart = () => {
             <span>Price {cartPoduct.price}</span>
             <span> count {cartPoduct.count}{'\u00A0 \u00A0'}</span>
             <span>{cartPoduct.price * cartPoduct.count}</span>
-          </div>
-        
+          </div>  
         })}
         <span className={styles.bold}>Grand Total:{total}</span>
       </div>
     </div>
   )
 }
-
 export default Cart;

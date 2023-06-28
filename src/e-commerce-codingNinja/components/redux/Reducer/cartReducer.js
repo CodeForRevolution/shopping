@@ -11,9 +11,7 @@ const cartSlice=createSlice({
     initialState:initialState,
     reducers:{
         setCart:(state,action)=>{
-
-            state.products=[...action.payload];
-
+            state.products=[...action.payload];//destructuring the array got from setCart action
         },
         addtoCart:(state,action)=>{
       if(state.products.find((element)=>(element.id==action.payload.id))){
@@ -21,7 +19,7 @@ const cartSlice=createSlice({
       }
       state.products.push({...action.payload ,count:1})
       const cartItem=[...state.products];
-      localStorage.setItem('cartItem',JSON.stringify(cartItem));
+      localStorage.setItem('cartItem',JSON.stringify(cartItem)); //adding the updated cart to local storage
 
       toast.success('Product Added to cart')
         },
@@ -30,17 +28,17 @@ const cartSlice=createSlice({
            console.log('current cart is',state.products)
            toast.success('Product Remove from cart');
            const cartItem=[...state.products];
-           localStorage.setItem('cartItem',JSON.stringify(cartItem));
+           localStorage.setItem('cartItem',JSON.stringify(cartItem)); //adding the updated cart to local storage
         },
         increase:(state,action)=>{
             state.products=[...action.payload];
             const cartItem=[...state.products];
-            localStorage.setItem('cartItem',JSON.stringify(cartItem));
+            localStorage.setItem('cartItem',JSON.stringify(cartItem)); //adding the updated cart to local storage
         },
         decrease:(state,action)=>{
-            state.products=[...action.payload]
-            const cartItem=[...state.products];
-            localStorage.setItem('cartItem',JSON.stringify(cartItem));
+            state.products=[...action.payload]     
+            const cartItem=[...state.products];     
+            localStorage.setItem('cartItem',JSON.stringify(cartItem)); //adding the updated cart to local storage
         }
     }
 })

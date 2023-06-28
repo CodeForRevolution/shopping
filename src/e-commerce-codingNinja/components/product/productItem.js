@@ -1,21 +1,11 @@
 import React from 'react'
 import styles from './productItem.module.css'
-import { useContext } from 'react'
-import { productContext } from '../../contextApi/contex'
 import { cartAction } from '../redux/Reducer/cartReducer'
 import { productAction, productSelector } from '../redux/Reducer/productReducer'
-import Edit from './Edit/Edit'
 import { EditAction } from '../redux/Reducer/EditReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartSelector } from '../redux/Reducer/cartReducer'
-import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'
-
-
-
-
-
 
 
 const ProductItem = (props) => {
@@ -25,52 +15,40 @@ const ProductItem = (props) => {
   const navigate = useNavigate();
 
 
-
   const AddtoCart = async (event, id) => {
     event.stopPropagation();
     if (allCartProduct.find((element) => element.id === id)) {
            return;
-
     }
-
-
     const newProduct = allProduct.find((element) => {
       if (element.id === id) {
-        return element;
+        return element;                                //checking cart product have this item or not
       }
+      return null;
     });
     const modifiedObject = { ...newProduct };
-    dispatch(cartAction.addtoCart(modifiedObject));
-    console.log('your props checking ')
-    
-
+    dispatch(cartAction.addtoCart(modifiedObject));   //sending the object as payload to reducer for addin the product in cart
   }
 
   const DeleteProduct = (event, id) => {
     event.stopPropagation()
-    console.log('you are deleting the product')
     dispatch(productAction.delete(id))
-  
-
   }
 
   const editProduct = (event, product) => {
-
-    console.log('you will edit this', product)
     event.stopPropagation();
     dispatch(EditAction.eidtToogle(true));
-    const modifiedProduct = { ...product };
-    dispatch(EditAction.add(modifiedProduct));
-
+    const modifiedProduct = { ...product };      
+    dispatch(EditAction.add(modifiedProduct));  //sendint the modified object to reducer to modified the cart item
+  
   }
 
 
   const MoreInfo = (id) => {
-    navigate(`/shopping/moreInfo?id=${id}`);
-
+    navigate(`/shopping/moreInfo?id=${id}`); //apendint the url to reach the product info page
   }
 
-  const { title, id, description, price, thumbnail, rating } = props.products
+  const { title, id, description, price, thumbnail, rating } = props.products //destructuring the object which got from props
   const stars = Array.from({ length: Number(rating) }, (_, index) => index + 1);
   return (
 
