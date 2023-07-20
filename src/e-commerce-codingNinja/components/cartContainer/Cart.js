@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './cart.module.css'
-import { productContext } from '../../contextApi/contex'
+// import { productContext } from '../../contextApi/contex'
 import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartAction, cartSelector } from '../redux/Reducer/cartReducer'

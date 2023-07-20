@@ -1,13 +1,11 @@
 import React, { Children, useEffect, useState } from 'react'
 import { createBrowserRouter, router, RouterProvider, Route, BrowserRouter } from "react-router-dom";
-import { productContext } from './contextApi/contex';
 import Navbar from './components/Navbar/Navbar';
 import ProductContainer from './components/productContainer/productContainer';
-import Login from './components/login/Login';
 import Create from './components/create/Create';
 import './App.css'
 import Cart from './components/cartContainer/Cart';
-import { Provider, useSelector } from 'react-redux';                                        
+import { Provider, useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { productAction, productSelector } from './components/redux/Reducer/productReducer';
 import ProductInfo from "./components/productInfo/productInfo"
@@ -34,34 +32,25 @@ const App = () => {
 
 
 
-//this use effect will run only once when app will mounted
+  //this use effect will run only once when app will mounted
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await fetch('https://dummyjson.com/products?limit=2000', { method: "GET" }); //fetching the product from url 
       const products = await response.json();
       const newP = products.products
       setProducts(newP)                                                     //setting the product to product useState
-
-      var cartItem=[];                                                       //checking whether user have the cart product in local storage
-      if(localStorage.getItem('cartItem')){
-       cartItem=await JSON.parse(localStorage.getItem('cartItem'));
-      console.log('you come to fetch the data from the local storage',cartItem);  
-      dispatch(cartAction.setCart(cartItem));                                 //after checking add the product from local storage to cart reducer
-     
+      var cartItem = [];                                                       //checking whether user have the cart product in local storage
+      if (localStorage.getItem('cartItem')) {
+        cartItem = await JSON.parse(localStorage.getItem('cartItem'));
+        console.log('you come to fetch the data from the local storage', cartItem);
+        dispatch(cartAction.setCart(cartItem));                                 //after checking add the product from local storage to cart reducer 
       }
-
 
       const ReduxProduct = [...newP];
       dispatch(productAction.setProduct(ReduxProduct));                       //add the intial product of api to product reducer
     }
     fetchProduct();
   }, [])
-
-
-  
-  const [cartProduct, setCartproduct] = useState([]);
-
-
 
 
 
@@ -71,7 +60,6 @@ const App = () => {
         path: 'shopping', element: <Navbar />, children: [
           { index: true, element: <ProductContainer /> },
           { path: 'cart', element: <Cart /> },
-          { path: 'login', element: <Login /> },                                  //here we are using routes and have a parent routes and under that other routes are child
           { path: 'create', element: <Create /> },
           { path: 'moreInfo', element: <ProductInfo /> },
         ],
@@ -80,19 +68,15 @@ const App = () => {
 
 
 
-
-
-
-
   return (
     <>
-        <div className='App_main'>
-          <RouterProvider router={browerrouter} />
-          < ToastContainer
+      <div className='App_main'>
+        <RouterProvider router={browerrouter} />
+        < ToastContainer
           position='top-right'
           autoClose={1000}
-          />
-        </div>
+        />
+      </div>
     </>
   )
 }

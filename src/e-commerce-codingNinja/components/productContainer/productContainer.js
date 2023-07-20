@@ -8,16 +8,17 @@ import { EdlitToggleSelectort } from '../redux/Reducer/EditReducer';
 import { toast } from 'react-toastify';
 
 
+
 const ProductContainer = () => {
   const ReduxProduct = useSelector(productSelector);
   const [productItems, setProductItems] = useState(ReduxProduct);
   let [sorfil, setSorfil] = useState({})
-  const [toggle,setToggle]=useState(0);    //setting initailly toggle to 0 becuase we want that initially it should hidden
+  const [toggle,setToggle]=useState(0);//setting initailly toggle to 0 becuase we want that initially it should hidden
 
 
 
   useEffect(() => {
-    setProductItems(ReduxProduct);  //setting the product State when the Redux or sorfil changes
+    setProductItems(ReduxProduct);//setting the product State when the Redux or sorfil changes
   }, [ReduxProduct, sorfil])
  
   useEffect(()=>{
@@ -29,7 +30,6 @@ const ProductContainer = () => {
         return;                                             //checking the view port width to decide whether should be give the toggle option or not
       }
       sideEl.style.transform = "translateX(-100%)"
-
     }
     if(toggle===1){   
       sideEl.style.transform = "translateX(0%)"
@@ -66,10 +66,14 @@ const ProductContainer = () => {
   }, [sorfil])
 
 
+
   const edit = useSelector(EdlitToggleSelectort);
   return (
     <>
-      <span className={styles.toggle} onClick={(()=>{toggle===0?setToggle(1):setToggle(0)})}>{toggle===0?<i class="fa-solid fa-bars"></i>:<i class="fa-solid fa-square-xmark"></i>}</span> 
+    {
+      window.innerWidth>700?null:  <span className={styles.toggle} onClick={(()=>{toggle===0?setToggle(1):setToggle(0)})}>{toggle===0?<i class="fa-solid fa-bars"></i>:<i class="fa-solid fa-square-xmark"></i>}</span> 
+    }
+    
     <div className={styles.sidemenu} id='sidebar'>
         <div className={styles.sideForm}>
           <div className={styles.search}><span></span><input type="text" placeholder='search....' value={sorfil.search} onChange={(e) => { setSorfil({ ...sorfil, search: e.target.value }) }} /></div>

@@ -22,31 +22,18 @@ const ProductInfo = () => {
       })
       setProduct(infoProduct || {})
       setLoading(false);
-   
     }
-
     Fetch();
-
-
   },[id,ReduxProduct])
 
 
-  const addToCart=()=>{
- 
+  const addToCart=()=>{ 
     dispatch(cartAction.addtoCart(product));
-
-
   }
-
-
-
-  console.log('+++++++Exit from more info++++++')
-
   if(loading){
     return <div>Loading the component</div>
   }
-
-  return (
+ return (
  <div className={styles.moreInfo_main} >  
 
  <div className={styles.container}>
