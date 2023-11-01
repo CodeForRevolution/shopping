@@ -12,7 +12,7 @@ const Navbar = () => {
          <nav>
            <div className="nav_logo">
                     <span><Link to={'/shopping'}><i class="fa-solid fa-house"></i></Link></span>
-                    <span><Link to={'/shopping/create'}>Add Product</Link></span>        
+                    <span><Link to={'/shopping/create'}>Create Product</Link></span>        
                 </div>
                 <span>E-shop.com</span>
                 <div className="nav_side">
